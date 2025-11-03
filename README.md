@@ -6,6 +6,13 @@ A aplicação **ConsultorHub** é uma solução que visa centralizar o gerenciam
 ## Dependências:
 O **ConsultorHub** possui as dependências listadas à seguir:
 
+### OpenAI API: 
+
+* AVISO: Insira a key da API no `src/main/resources/application.properties`;<br>
+
+### PostgreSQL(BD)
+* Download: <a href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads">https://www.enterprisedb.com/downloads/postgres-postgresql-downloads</a>
+
 ### Swagger
 
 * Para acessar o Swagger e visualizar todas as rotas da API, insira a URL à seguir no seu navegador: <a href="http://127.0.0.1:8080/swagger-ui/index.html">`http://127.0.0.1:8080/swagger-ui/index.html`</a> 

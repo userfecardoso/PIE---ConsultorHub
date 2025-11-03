@@ -22,10 +22,10 @@ public class controller {
 		return "Rota Search";
 	}
 	
-	@PostMapping("/upload")
-	public String routeUpload() {
-		return "Rota upload";
-	}
+//	@PostMapping("/upload")
+//	public String routeUpload() {
+//		return "Rota upload";
+//	}
 	
 	@GetMapping("/near_end")
 	public String routeNearEnd() {

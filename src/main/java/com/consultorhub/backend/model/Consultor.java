@@ -2,15 +2,22 @@ package com.consultorhub.backend.model;
 
 import java.util.List;
 import java.util.UUID;
-import jakarta.persistence.Entity;
+import java.util.Collection;import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.JoinColumn;
+
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public class Consultor {
+public class Consultor implements UserDetails{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
@@ -19,15 +26,21 @@ public class Consultor {
 	private String nome;
 	private String cpf;
 	private String email;
+	private String senha;
 	
 	@OneToMany(mappedBy = "consultor")
 	private List<Apolice> apolices;
-	
-	@OneToMany(mappedBy = "consultores")
-	private List<Seguradora> seguradoras;
-	
-	@ManyToMany(mappedBy = "consultor")
+		
+	@OneToMany(mappedBy = "consultor")
 	private List<Cliente> clientes;
+	
+	@ManyToMany
+	@JoinTable(
+			name="consultor_seguradora",
+			joinColumns= @JoinColumn(name="consultor_id"),
+			inverseJoinColumns = @JoinColumn(name="seguradora_id")
+	)
+	private List<Seguradora> seguradoras;
 	
 	public Consultor() {
 	}
@@ -86,6 +99,47 @@ public class Consultor {
 
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
+	}
+	
+//	~~~~~~~~~~~~~~~~~~~~~~~
+	
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
+	@Override
+	public String getPassword() {
+		return this.senha;
+	}
+	
+	@Override
+	public String getUsername() {
+		return this.email; // Preferi usar o email como "username", mas se quiser mudar dps...
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority("ROLE_CONSULTOR"));
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true; 
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true; 
 	}
 	
 }

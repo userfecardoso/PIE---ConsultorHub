@@ -6,8 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.ManyToMany;
 
@@ -22,15 +20,10 @@ public class Seguradora {
 	private String email;
 	private String cnpj;
 	
-	@OneToMany
-	@JoinColumn(name = "seguradora")
+	@OneToMany(mappedBy="seguradora")
 	private List<Apolice> apolices;
 	
-	@ManyToMany
-	@JoinTable(
-			name="seguradora_consultor",
-			joinColumns=@JoinColumn(name="seguradora_id"),
-			inverseJoinColumns=@JoinColumn(name="consultor_id"))
+	@ManyToMany(mappedBy="seguradoras")
 	private List<Consultor> consultores;
 
 	public Seguradora() {

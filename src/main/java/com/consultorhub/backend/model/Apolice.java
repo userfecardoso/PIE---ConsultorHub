@@ -18,15 +18,15 @@ public class Apolice{
 	private UUID id;
 	
 	@ManyToOne
-	@JoinColumn(name="id_cliente", nullable=false)
+	@JoinColumn(name="idCliente", nullable=false)
 	private Cliente cliente;
 	
 	@ManyToOne
-	@JoinColumn(name="id_consultor", nullable=false)
+	@JoinColumn(name="idConsultor", nullable=false)
 	private Consultor consultor;
 	
 	@ManyToOne
-	@JoinColumn(name="id_seguradora", nullable=false)
+	@JoinColumn(name="idSeguradora", nullable=false)
 	private Seguradora seguradora;
 	
 	
