@@ -3,7 +3,6 @@ package com.consultorhub.backend.model;
 import java.util.List;
 import java.util.UUID;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,8 +22,9 @@ public class Cliente {
 	private String cpf;
 	private String email;
 	private String telefone;
+	private String status = "ATIVO";
 	
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "cliente", orphanRemoval = true)
 	private List<Apolice> apolices;
 	
 	@ManyToOne
@@ -33,7 +33,19 @@ public class Cliente {
 	
 	public Cliente() {
 	}
-
+	
+	public Cliente(UUID id, String nome, String cpf, String email, String telefone,
+			List<Apolice> apolices, Consultor consultor) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.telefone = telefone;
+		this.status = "ATIVO";
+		this.apolices = apolices;
+		this.consultor = consultor;
+	}
 
 	public UUID getId() {
 		return id;
@@ -94,5 +106,25 @@ public class Cliente {
 		this.apolices = apolices;
 	}
 
+
+	public Consultor getConsultor() {
+		return consultor;
+	}
+
+
+	public void setConsultor(Consultor consultor) {
+		this.consultor = consultor;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 }
 

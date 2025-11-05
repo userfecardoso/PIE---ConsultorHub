@@ -19,6 +19,7 @@ public class Seguradora {
 	private String nome;
 	private String email;
 	private String cnpj;
+	private String status = "ATIVO";
 	
 	@OneToMany(mappedBy="seguradora")
 	private List<Apolice> apolices;
@@ -75,6 +76,14 @@ public class Seguradora {
 
 	public void setConsultores(List<Consultor> consultores) {
 		this.consultores = consultores;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

@@ -37,7 +37,9 @@ public class LlmService {
 	            ---
 	            """.formatted(documentText);
 		
-		ChatRequest request = new ChatRequest("gpt-4-turbo", prompt);
+		System.out.println(prompt);
+		
+		ChatRequest request = new ChatRequest("gpt-3.5-turbo", prompt);
 		
 		ChatResponse response = llmWebClient.post()
 	            .uri("/chat/completions")

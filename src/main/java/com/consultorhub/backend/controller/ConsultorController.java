@@ -1,5 +1,8 @@
 package com.consultorhub.backend.controller;
 
+import com.consultorhub.backend.service.SeguradoraService;
+import com.consultorhub.backend.dto.SeguradoraResponseDTO;
+
 import com.consultorhub.backend.model.Cliente;
 import com.consultorhub.backend.model.Consultor;
 import com.consultorhub.backend.model.Seguradora;
@@ -11,13 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/consultor")
+@RequestMapping("/api/consultores")
 public class ConsultorController {
 
+	private final SeguradoraService seguradoraService;
 
-    public ConsultorController() {
+    public ConsultorController(SeguradoraService seguradoraService) {
+    	this.seguradoraService = seguradoraService;
     }
 
     @GetMapping("/me")
@@ -33,7 +39,12 @@ public class ConsultorController {
 
 
     @GetMapping("/me/seguradoras")
-    public List<Seguradora> getMinhasSeguradoras(@AuthenticationPrincipal Consultor consultorLogado) {
-        return consultorLogado.getSeguradoras();
+    public List<SeguradoraResponseDTO> getMinhasSeguradoras(@AuthenticationPrincipal Consultor consultorLogado) {
+    	
+    	List<Seguradora> seguradoras = seguradoraService.obterMinhasSeguradoras(consultorLogado);
+    	
+        return seguradoras.stream()
+        		.map(SeguradoraResponseDTO::new)
+        		.collect(Collectors.toList());
     }
 }

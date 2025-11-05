@@ -16,5 +16,6 @@ public interface SeguradoraRepository extends JpaRepository<Seguradora, UUID> {
 	
 	Optional<Seguradora> findByEmail(String email);
 	
+	boolean existsByIdAndConsultoresId(UUID seguradoraId, UUID consultorId);
 	
 }

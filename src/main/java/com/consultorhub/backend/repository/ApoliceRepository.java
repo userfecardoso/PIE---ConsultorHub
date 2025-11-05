@@ -1,11 +1,13 @@
 package com.consultorhub.backend.repository;
 
-import java.util.UUID;
 import com.consultorhub.backend.model.Apolice;
-import java.time.LocalDate;
+import com.consultorhub.backend.model.Cliente;
+import com.consultorhub.backend.model.Consultor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public interface ApoliceRepository extends JpaRepository<Apolice, UUID> {
@@ -18,7 +20,20 @@ public interface ApoliceRepository extends JpaRepository<Apolice, UUID> {
 
 	List<Apolice> findBySeguradoraId(UUID idSeguradora);
 
-	List<Apolice> findByStatusAndDataTerminoVigenciaBetween(String status, LocalDate dataInicio, LocalDate dataFim);
+	// 	/doc_reports
+	List<Apolice> findByConsultor(Consultor consultor);
+	
+	//  /client_docs
+	List<Apolice> findByCliente(Cliente cliente);
+	
 	// Essa mistura bizarra de ingles e portugues só ta assim pq o JpaRepository cria as queries
 	// automaticamente usando o "findBy[NomeDoAtributo]".
+	List<Apolice> findByStatusAndDataTerminoVigenciaBetweenAndConsultor(
+	        String status, 
+	        LocalDate dataInicio, 
+	        LocalDate dataFim, 
+	        Consultor consultor
+	);
+	
+	
 }

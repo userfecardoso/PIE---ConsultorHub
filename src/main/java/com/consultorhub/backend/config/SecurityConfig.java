@@ -32,6 +32,15 @@ public class SecurityConfig {
             
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/api/auth/**").permitAll() 
+                
+//               Da acesso ao Swagger sem token. Tirar depois do projeto pronto.
+                .requestMatchers(
+                		"/swagger-ui.html",
+                		"/swagger-ui/**",
+                		"/v3/api-docs",
+                		"/v3/api-docs/**"
+                		
+                ).permitAll()
                 .anyRequest().authenticated() 
             )
 
