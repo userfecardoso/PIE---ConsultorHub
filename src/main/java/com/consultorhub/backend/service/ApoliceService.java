@@ -186,4 +186,12 @@ public class ApoliceService {
         return apoliceRepository.findByCliente(cliente);
     }
 	
+	public List<Apolice> obterApolicesPorTipo(Consultor consultorLogado, String tipo) {
+        
+        return apoliceRepository.findByConsultorAndTipoAtivas(
+            consultorLogado, 
+            tipo
+        );
+    }
+	
 }

@@ -2,6 +2,7 @@ package com.consultorhub.backend.model;
 
 import java.util.List;
 import java.util.UUID;
+import java.time.LocalDateTime;
 import java.util.Collection;import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,7 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
 
-
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +23,9 @@ public class Consultor implements UserDetails{
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
+	
+	@CreationTimestamp
+	private LocalDateTime createdOn;
 	
 	private String nome;
 	private String cpf;
@@ -140,6 +144,10 @@ public class Consultor implements UserDetails{
 	@Override
 	public boolean isEnabled() {
 		return true; 
+	}
+
+	public LocalDateTime getCreatedOn() {
+		return createdOn;
 	}
 	
 }

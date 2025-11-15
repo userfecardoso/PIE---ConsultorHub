@@ -3,12 +3,15 @@ package com.consultorhub.backend.model;
 
 import java.util.UUID;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Id;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Apolice{
@@ -29,11 +32,14 @@ public class Apolice{
 	@JoinColumn(name="idSeguradora", nullable=false)
 	private Seguradora seguradora;
 	
+	@CreationTimestamp
+	private LocalDateTime createdOn;
 	
 	private Double valorPremio;
 	private LocalDate dataInicioVigencia;
 	private LocalDate dataTerminoVigencia;
 	private String status;
+	private String tipo;
 	
 	public Apolice() {
 	
@@ -101,6 +107,18 @@ public class Apolice{
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public LocalDateTime getCreatedOn() {
+		return createdOn;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 }

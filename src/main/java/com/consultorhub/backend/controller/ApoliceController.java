@@ -137,4 +137,19 @@ public class ApoliceController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+    
+//  ------------------------------------------------------------------
+
+    @GetMapping("/tipo/{tipo}")
+    public List<ApoliceResponseDTO> getApolicesPorTipo(
+    		@AuthenticationPrincipal Consultor consultorLogado,
+    		@PathVariable String tipo){
+    	
+    	List<Apolice> apolices = apoliceService.obterApolicesPorTipo(consultorLogado, tipo);
+    	
+    	return apolices.stream()
+                .map(ApoliceResponseDTO::new)
+                .collect(Collectors.toList());
+    }
+    
 }

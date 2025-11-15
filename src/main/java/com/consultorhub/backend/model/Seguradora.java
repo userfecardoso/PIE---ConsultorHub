@@ -1,7 +1,11 @@
 package com.consultorhub.backend.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +24,9 @@ public class Seguradora {
 	private String email;
 	private String cnpj;
 	private String status = "ATIVO";
+	
+	@CreationTimestamp
+	private LocalDateTime createdOn;
 	
 	@OneToMany(mappedBy="seguradora")
 	private List<Apolice> apolices;
@@ -84,6 +91,10 @@ public class Seguradora {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public LocalDateTime getCreatedOn() {
+		return createdOn;
 	}
 	
 }

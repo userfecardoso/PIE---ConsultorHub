@@ -1,7 +1,10 @@
 package com.consultorhub.backend.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,6 +20,9 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
+	
+	@CreationTimestamp
+	private LocalDateTime createdOn;
 	
 	private String nome;
 	private String cpf;
@@ -124,6 +130,10 @@ public class Cliente {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public LocalDateTime getCreatedOn() {
+		return createdOn;
 	}
 	
 }

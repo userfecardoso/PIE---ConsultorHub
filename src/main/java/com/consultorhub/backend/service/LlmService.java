@@ -29,6 +29,7 @@ public class LlmService {
 	              "valorPremio": 0.0,
 	              "dataInicioVigencia": "YYYY-MM-DD",
 	              "dataTerminoVigencia": "YYYY-MM-DD",
+	              "tipo": "Saúde, Vida, ou outro"
 	            }
 	            
 	            TEXTO DA APÓLICE:
