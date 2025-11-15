@@ -32,6 +32,7 @@ public class ApoliceService {
 	private final PDFBoxService pdfService;
 	private final LlmService llmService;
 	private final ObjectMapper objectMapper;
+	private final FileStorageService fileStorageService;
 
 	
 	public ApoliceService(ApoliceRepository apoliceRepository, 
@@ -39,17 +40,21 @@ public class ApoliceService {
 			LlmService llmService, 
 			ClienteRepository clienteRepository,
 			SeguradoraRepository seguradoraRepository,
-			ObjectMapper objectMapper) {
+			ObjectMapper objectMapper,
+			FileStorageService fileStorageService) {
 		this.apoliceRepository = apoliceRepository;
 		this.pdfService = pdfService;
 		this.llmService = llmService;
 		this.clienteRepository = clienteRepository;
 		this.seguradoraRepository = seguradoraRepository;
 		this.objectMapper = objectMapper;
+		this.fileStorageService = fileStorageService;
 
 	}
 	
 	public Apolice uploadDocument(MultipartFile file, Consultor consultorLogado, String idClienteString, String idSeguradoraString, String notas) throws Exception{
+		
+		String fileName = fileStorageService.storeFile(file);
 		
 		String extractedText;
 		
@@ -114,6 +119,8 @@ public class ApoliceService {
 		
 		newApolice.setConsultor(consultorLogado);
 
+		newApolice.setNomeArquivo(fileName);
+		
 		return apoliceRepository.save(newApolice);
 	}
 	

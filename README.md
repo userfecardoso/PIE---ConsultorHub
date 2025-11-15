@@ -27,5 +27,9 @@ spring.datasource.username=<username_do_banco_de_dados> #OBS: Pode-se deixar ess
 spring.datasource.password=<senha_do_postgreSQL> # Essa senha é a que você criou quando instalou o PostgreSQL na sua máquina.
 ````
 
-### 2. Ligar a API:
+### 2. Configurar o Path onde os arquivos serão salvos localmente:
+Em `BackendApplication.java` insira um path válido em `file.storage.upload-dir=<PATH>`
+
+
+### 3. Ligar a API:
 Para executar a API, vá até o módulo `src/main/java/com/consultorhub/backend` e execute a classe `BackendApplication.java`.

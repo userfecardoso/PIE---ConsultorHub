@@ -44,6 +44,7 @@ public class Apolice{
 	private LocalDate dataTerminoVigencia;
 	private String status;
 	private String tipo;
+	private String nomeArquivo;
 	
 	public Apolice() {
 	
@@ -148,6 +149,14 @@ public class Apolice{
 
 	public void setNotas(String notas) {
 		this.notas = notas;
+	}
+
+	public String getNomeArquivo() {
+		return nomeArquivo;
+	}
+
+	public void setNomeArquivo(String nomeArquivo) {
+		this.nomeArquivo = nomeArquivo;
 	}
 	
 }
