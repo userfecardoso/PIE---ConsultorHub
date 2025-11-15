@@ -10,6 +10,7 @@ public class ApoliceResponseDTO {
     private LocalDate dataInicioVigencia;
     private LocalDate dataTerminoVigencia;
     private String status;
+    private String notas;
     private UUID clienteId;
     private UUID consultorId;
     private UUID seguradoraId;
@@ -23,6 +24,7 @@ public class ApoliceResponseDTO {
         this.clienteId = apolice.getCliente().getId();
         this.consultorId = apolice.getConsultor().getId();
         this.seguradoraId = apolice.getSeguradora().getId();
+        this.notas = apolice.getNotas();
     }
 
 	public UUID getId() {
@@ -88,5 +90,13 @@ public class ApoliceResponseDTO {
 	public void setSeguradoraId(UUID seguradoraId) {
 		this.seguradoraId = seguradoraId;
 	}
-    
+
+	public String getNotas() {
+		return notas;
+	}
+
+	public void setNotas(String notas) {
+		this.notas = notas;
+	}
+	
 }

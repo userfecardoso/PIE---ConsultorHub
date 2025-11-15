@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +25,9 @@ public class Cliente {
 	@CreationTimestamp
 	private LocalDateTime createdOn;
 	
+	@Column(columnDefinition = "TEXT")
+	private String notas;
+	
 	private String nome;
 	private String cpf;
 	private String email;
@@ -39,16 +43,18 @@ public class Cliente {
 	
 	public Cliente() {
 	}
-	
-	public Cliente(UUID id, String nome, String cpf, String email, String telefone,
-			List<Apolice> apolices, Consultor consultor) {
+
+	public Cliente(UUID id, LocalDateTime createdOn, String notas, String nome, String cpf, String email,
+			String telefone, String status, List<Apolice> apolices, Consultor consultor) {
 		super();
 		this.id = id;
+		this.createdOn = createdOn;
+		this.notas = notas;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
 		this.telefone = telefone;
-		this.status = "ATIVO";
+		this.status = status;
 		this.apolices = apolices;
 		this.consultor = consultor;
 	}
@@ -134,6 +140,14 @@ public class Cliente {
 
 	public LocalDateTime getCreatedOn() {
 		return createdOn;
+	}
+
+	public String getNotas() {
+		return notas;
+	}
+
+	public void setNotas(String notas) {
+		this.notas = notas;
 	}
 	
 }

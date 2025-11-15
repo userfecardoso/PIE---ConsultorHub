@@ -9,6 +9,7 @@ public class SeguradoraResponseDTO {
     private String email;
     private String cnpj;
     private String status;
+    private String notas;
 
     public SeguradoraResponseDTO(Seguradora seguradora) {
         this.id = seguradora.getId();
@@ -16,6 +17,7 @@ public class SeguradoraResponseDTO {
         this.email = seguradora.getEmail();
         this.cnpj = seguradora.getCnpj();
         this.status = seguradora.getStatus();
+        this.notas = seguradora.getNotas();
     }
 
 	public UUID getId() {
@@ -57,7 +59,14 @@ public class SeguradoraResponseDTO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-    
+
+	public String getNotas() {
+		return notas;
+	}
+
+	public void setNotas(String notas) {
+		this.notas = notas;
+	}
     
     
 }

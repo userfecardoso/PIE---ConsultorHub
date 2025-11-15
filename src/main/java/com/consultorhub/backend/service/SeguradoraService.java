@@ -25,7 +25,8 @@ public class SeguradoraService {
         this.consultorRepository = consultorRepository;
     }
 
-
+ // --------------------------------------------------------------------------
+    
     @Transactional 
     public Seguradora criarSeguradora(SeguradoraDTO dto, Consultor consultorLogado) {
        
@@ -33,6 +34,7 @@ public class SeguradoraService {
         novaSeguradora.setNome(dto.getNome());
         novaSeguradora.setEmail(dto.getEmail());
         novaSeguradora.setCnpj(dto.getCnpj());
+        novaSeguradora.setNotas(dto.getNotas());
         Seguradora seguradoraSalva = seguradoraRepository.save(novaSeguradora);
 
         Consultor consultor = consultorRepository.findById(consultorLogado.getId())
@@ -44,6 +46,9 @@ public class SeguradoraService {
 
         return seguradoraSalva;
     }
+    
+ // --------------------------------------------------------------------------
+
     @Transactional(readOnly = true)
     public List<Seguradora> obterMinhasSeguradoras(Consultor consultorLogado) {
 
@@ -54,22 +59,37 @@ public class SeguradoraService {
             .filter(seguradora -> "ATIVO".equals(seguradora.getStatus()))
             .collect(Collectors.toList());
     }
-    
+
+ // --------------------------------------------------------------------------
+
     public Seguradora obterSeguradoraPorId(UUID id, Consultor consultorLogado) {
 
         return validarEAcharSeguradora(id, consultorLogado);
     }
 
+ // --------------------------------------------------------------------------
+
     public Seguradora atualizarSeguradora(UUID id, SeguradoraDTO dto, Consultor consultorLogado) {
 
         Seguradora seguradora = validarEAcharSeguradora(id, consultorLogado);
 
-        seguradora.setNome(dto.getNome());
-        seguradora.setEmail(dto.getEmail());
-        seguradora.setCnpj(dto.getCnpj());
+        if (dto.getNome() != null) {
+            seguradora.setNome(dto.getNome());
+        }
+        if (dto.getEmail() != null) {
+            seguradora.setEmail(dto.getEmail());
+        }
+        if (dto.getCnpj() != null) {
+            seguradora.setCnpj(dto.getCnpj());
+        }
+        if (dto.getNotas() != null) { 
+            seguradora.setNotas(dto.getNotas());
+        }
         
         return seguradoraRepository.save(seguradora);
     }
+
+ // --------------------------------------------------------------------------
 
     public Seguradora deletarSeguradora(UUID id, Consultor consultorLogado) {
 
@@ -80,7 +100,8 @@ public class SeguradoraService {
         return seguradoraRepository.save(seguradora);
     }
 
-
+ // --------------------------------------------------------------------------
+    
     private Seguradora validarEAcharSeguradora(UUID idSeguradora, Consultor consultorLogado) {
 
         boolean isAssociado = seguradoraRepository.existsByIdAndConsultoresId(

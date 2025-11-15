@@ -5,6 +5,7 @@ import java.util.UUID;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,6 +36,9 @@ public class Apolice{
 	@CreationTimestamp
 	private LocalDateTime createdOn;
 	
+	@Column(columnDefinition = "TEXT")
+    private String notas;
+	
 	private Double valorPremio;
 	private LocalDate dataInicioVigencia;
 	private LocalDate dataTerminoVigencia;
@@ -43,6 +47,23 @@ public class Apolice{
 	
 	public Apolice() {
 	
+	}
+
+	public Apolice(UUID id, Cliente cliente, Consultor consultor, Seguradora seguradora, LocalDateTime createdOn,
+			String notas, Double valorPremio, LocalDate dataInicioVigencia, LocalDate dataTerminoVigencia,
+			String status, String tipo) {
+		super();
+		this.id = id;
+		this.cliente = cliente;
+		this.consultor = consultor;
+		this.seguradora = seguradora;
+		this.createdOn = createdOn;
+		this.notas = notas;
+		this.valorPremio = valorPremio;
+		this.dataInicioVigencia = dataInicioVigencia;
+		this.dataTerminoVigencia = dataTerminoVigencia;
+		this.status = status;
+		this.tipo = tipo;
 	}
 
 	public UUID getId() {
@@ -119,6 +140,14 @@ public class Apolice{
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getNotas() {
+		return notas;
+	}
+
+	public void setNotas(String notas) {
+		this.notas = notas;
 	}
 	
 }

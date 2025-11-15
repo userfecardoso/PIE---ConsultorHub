@@ -49,9 +49,9 @@ public class ApoliceService {
 
 	}
 	
-	public Apolice uploadDocument(MultipartFile file, Consultor consultorLogado, String idClienteString, String idSeguradoraString) throws Exception{
-		String extractedText;
+	public Apolice uploadDocument(MultipartFile file, Consultor consultorLogado, String idClienteString, String idSeguradoraString, String notas) throws Exception{
 		
+		String extractedText;
 		
 		System.out.println("Entrou na função");
 		
@@ -76,6 +76,9 @@ public class ApoliceService {
 		System.out.println("Criou a nova apólice");
 		
 		newApolice.setStatus("ATIVO");
+		
+		newApolice.setNotas(notas);
+		
 		System.out.println("Setou status");
 		UUID idCliente = UUID.fromString(idClienteString);
 		

@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +26,9 @@ public class Seguradora {
 	private String cnpj;
 	private String status = "ATIVO";
 	
+	@Column(columnDefinition = "TEXT")
+    private String notas;
+	
 	@CreationTimestamp
 	private LocalDateTime createdOn;
 	
@@ -35,6 +39,20 @@ public class Seguradora {
 	private List<Consultor> consultores;
 
 	public Seguradora() {
+	}
+	
+	public Seguradora(UUID id, String nome, String email, String cnpj, String status, String notas,
+			LocalDateTime createdOn, List<Apolice> apolices, List<Consultor> consultores) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.cnpj = cnpj;
+		this.status = status;
+		this.notas = notas;
+		this.createdOn = createdOn;
+		this.apolices = apolices;
+		this.consultores = consultores;
 	}
 
 	public UUID getId() {
@@ -95,6 +113,14 @@ public class Seguradora {
 
 	public LocalDateTime getCreatedOn() {
 		return createdOn;
+	}
+
+	public String getNotas() {
+		return notas;
+	}
+
+	public void setNotas(String notas) {
+		this.notas = notas;
 	}
 	
 }

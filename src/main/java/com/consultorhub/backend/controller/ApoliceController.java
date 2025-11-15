@@ -38,14 +38,16 @@ public class ApoliceController {
             @AuthenticationPrincipal Consultor consultorLogado,
             @RequestPart("file") MultipartFile file,        
             @RequestPart("idCliente") String idCliente,     
-            @RequestPart("idSeguradora") String idSeguradora) {
+            @RequestPart("idSeguradora") String idSeguradora,
+    		@RequestPart(value = "notas", required = false) String notas){
         
         try {
             Apolice apoliceCriada = apoliceService.uploadDocument(
             	file, 
                 consultorLogado, 
                 idCliente, 
-                idSeguradora
+                idSeguradora,
+                notas
             );
            
             ApoliceResponseDTO responseDto = new ApoliceResponseDTO(apoliceCriada);

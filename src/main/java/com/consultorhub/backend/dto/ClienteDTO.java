@@ -6,6 +6,7 @@ public class ClienteDTO {
     private String email;
     private String telefone;
     private String status;
+    private String notas;
 
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
@@ -33,4 +34,11 @@ public class ClienteDTO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getNotas() {
+		return notas;
+	}
+	public void setNotas(String notas) {
+		this.notas = notas;
+	}
+
 }

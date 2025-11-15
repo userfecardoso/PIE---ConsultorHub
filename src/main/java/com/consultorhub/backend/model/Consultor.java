@@ -49,6 +49,20 @@ public class Consultor implements UserDetails{
 	public Consultor() {
 	}
 
+	public Consultor(UUID id, LocalDateTime createdOn, String nome, String cpf, String email, String senha,
+			List<Apolice> apolices, List<Cliente> clientes, List<Seguradora> seguradoras) {
+		super();
+		this.id = id;
+		this.createdOn = createdOn;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.senha = senha;
+		this.apolices = apolices;
+		this.clientes = clientes;
+		this.seguradoras = seguradoras;
+	}
+
 	public UUID getId() {
 		return id;
 	}

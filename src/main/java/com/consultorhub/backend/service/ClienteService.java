@@ -38,6 +38,7 @@ public class ClienteService {
         novoCliente.setEmail(dto.getEmail());
         novoCliente.setCpf(dto.getCpf());
         novoCliente.setTelefone(dto.getTelefone());
+        novoCliente.setNotas(dto.getNotas());
         
         novoCliente.setConsultor(consultorLogado); 
         
@@ -76,10 +77,21 @@ public class ClienteService {
 
         Cliente cliente = obterClientePorId(idCliente, consultorLogado);
 
-        cliente.setNome(dto.getNome());
-        cliente.setEmail(dto.getEmail());
-        cliente.setCpf(dto.getCpf());
-        cliente.setTelefone(dto.getTelefone());
+        if (dto.getNome() != null) {
+            cliente.setNome(dto.getNome());
+        }
+        if (dto.getEmail() != null) {
+            cliente.setEmail(dto.getEmail());
+        }
+        if (dto.getCpf() != null) {
+            cliente.setCpf(dto.getCpf());
+        }
+        if (dto.getTelefone() != null) {
+            cliente.setTelefone(dto.getTelefone());
+        }
+        if (dto.getNotas() != null) {
+            cliente.setNotas(dto.getNotas());
+        }
         
         return clienteRepository.save(cliente);
     }

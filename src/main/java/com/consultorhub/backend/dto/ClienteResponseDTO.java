@@ -11,6 +11,7 @@ public class ClienteResponseDTO {
     private String email;
     private String telefone;
     private String status;
+    private String notas;
 
     public ClienteResponseDTO(Cliente cliente) {
         this.id = cliente.getId();
@@ -19,6 +20,7 @@ public class ClienteResponseDTO {
         this.email = cliente.getEmail();
         this.telefone = cliente.getTelefone();
         this.status = cliente.getStatus();
+        this.notas = cliente.getNotas();
     }
 
 	public UUID getId() {
@@ -67,6 +69,14 @@ public class ClienteResponseDTO {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getNotas() {
+		return notas;
+	}
+
+	public void setNotas(String notas) {
+		this.notas = notas;
 	}
  
 }

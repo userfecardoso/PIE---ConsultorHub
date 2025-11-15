@@ -4,6 +4,7 @@ public class SeguradoraDTO {
     private String nome;
     private String email;
     private String cnpj;
+    private String notas;
     
 	public String getNome() {
 		return nome;
@@ -23,5 +24,11 @@ public class SeguradoraDTO {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-    
+	public String getNotas() {
+		return notas;
+	}
+	public void setNotas(String notas) {
+		this.notas = notas;
+	}
+	
 }
