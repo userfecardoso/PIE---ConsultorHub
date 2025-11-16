@@ -12,7 +12,9 @@ import com.consultorhub.backend.model.Seguradora;
 import com.consultorhub.backend.dto.ApoliceUpdateDTO;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.stereotype.Service;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 
 import java.io.InputStream;
@@ -147,7 +149,7 @@ public class ApoliceService {
 	//  /doc_update
 	public Apolice atualizarApolice(UUID apoliceId, ApoliceUpdateDTO dto, Consultor consultorLogado) {
         Apolice apolice = apoliceRepository.findById(apoliceId)
-            .orElseThrow(() -> new RuntimeException("Apólice não encontrada com ID: " + apoliceId));
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT ,"Apólice não encontrada com ID: " + apoliceId));
 
         if (!apolice.getConsultor().getId().equals(consultorLogado.getId())) {
             throw new AccessDeniedException("Acesso Negado: Esta apólice não pertence a você.");

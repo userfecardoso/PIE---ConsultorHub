@@ -11,6 +11,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Column;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,10 +28,16 @@ public class Consultor implements UserDetails{
 	@CreationTimestamp
 	private LocalDateTime createdOn;
 	
+	@Column(name = "status")
+	private String status = "ATIVO";
+
 	private String nome;
 	private String cpf;
 	private String email;
 	private String senha;
+	
+	private String resetToken;
+	private LocalDateTime resetTokenExpiry;
 	
 	@OneToMany(mappedBy = "consultor")
 	private List<Apolice> apolices;
@@ -162,6 +169,22 @@ public class Consultor implements UserDetails{
 
 	public LocalDateTime getCreatedOn() {
 		return createdOn;
+	}
+
+	public String getResetToken() {
+		return resetToken;
+	}
+
+	public void setResetToken(String resetToken) {
+		this.resetToken = resetToken;
+	}
+
+	public LocalDateTime getResetTokenExpiry() {
+		return resetTokenExpiry;
+	}
+
+	public void setResetTokenExpiry(LocalDateTime resetTokenExpiry) {
+		this.resetTokenExpiry = resetTokenExpiry;
 	}
 	
 }

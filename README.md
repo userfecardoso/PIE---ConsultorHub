@@ -28,8 +28,15 @@ spring.datasource.password=<senha_do_postgreSQL> # Essa senha é a que você cri
 ````
 
 ### 2. Configurar o Path onde os arquivos serão salvos localmente:
-Em `BackendApplication.java` insira um path válido em `file.storage.upload-dir=<PATH>`
+Em `application.properties.java` insira um path válido em `file.storage.upload-dir=<PATH>`
 
+### 3. Configurar o email que enviará o token de recuperação da senha:
+Em `application.properties.java`, configure as propriedades: 
+* `spring.mail.host`, 
+* `spring.mail.username`,
+* `spring.mail.password`.
 
-### 3. Ligar a API:
+Para obter esses parâmetros, crie uma conta em mailtrap.io, vá em Sandboxes, copie as credenciais apresentadas e cole-as nos campos respectivos.
+
+### 4. Ligar a API:
 Para executar a API, vá até o módulo `src/main/java/com/consultorhub/backend` e execute a classe `BackendApplication.java`.
