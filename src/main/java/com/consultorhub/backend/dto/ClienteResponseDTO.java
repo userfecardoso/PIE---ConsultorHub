@@ -2,6 +2,7 @@ package com.consultorhub.backend.dto;
 
 import com.consultorhub.backend.model.Cliente;
 import java.util.UUID;
+import java.time.LocalDateTime;
 
 public class ClienteResponseDTO {
 
@@ -13,6 +14,8 @@ public class ClienteResponseDTO {
     private String status;
     private String notas;
 
+	private LocalDateTime createdOn;
+
     public ClienteResponseDTO(Cliente cliente) {
         this.id = cliente.getId();
         this.nome = cliente.getNome();
@@ -21,6 +24,7 @@ public class ClienteResponseDTO {
         this.telefone = cliente.getTelefone();
         this.status = cliente.getStatus();
         this.notas = cliente.getNotas();
+		this.createdOn = cliente.getCreatedOn(); // Mapeando os novos campos para o DTO
     }
 
 	public UUID getId() {
@@ -77,6 +81,15 @@ public class ClienteResponseDTO {
 
 	public void setNotas(String notas) {
 		this.notas = notas;
+	}
+
+	// Adicionado os Getters e Setters do createdOn
+	public LocalDateTime getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(LocalDateTime createdOn) {
+		this.createdOn = createdOn;
 	}
  
 }

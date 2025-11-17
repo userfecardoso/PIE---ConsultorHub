@@ -23,7 +23,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, UUID>{
 	Optional<Cliente> findByTelefone(String telefone);
 
 	//   /client_reports
-	List<Cliente> findByConsultorAndStatus(Consultor consultor, String status);
+	List<Cliente> findByConsultor(Consultor consultor); //Alterado de findByConsultorAndStatus para findByConsultor
 	
 	//   /client_company_reports
 	@Query("SELECT DISTINCT c FROM Cliente c JOIN c.apolices a WHERE c.consultor = :consultor AND a.seguradora.id = :seguradoraId AND c.status = 'ATIVO'")

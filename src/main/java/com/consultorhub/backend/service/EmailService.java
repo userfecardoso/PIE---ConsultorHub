@@ -16,7 +16,7 @@ public class EmailService {
 
     public void enviarEmailReset(String paraEmail, String token) {
         
-        String urlDoFrontend = "http://localhost:3000/resetar-senha?token=" + token; 
+        String urlDoFrontend = "http://localhost:5173/resetar-senha?token=" + token;
 
         SimpleMailMessage message = new SimpleMailMessage();
         

@@ -38,7 +38,7 @@ public class ClienteService {
         novoCliente.setEmail(dto.getEmail());
         novoCliente.setCpf(dto.getCpf());
         novoCliente.setTelefone(dto.getTelefone());
-        novoCliente.setNotas(dto.getNotas());
+        novoCliente.setNotas(dto.getNotas()); // Salva as notas no BD
         
         novoCliente.setConsultor(consultorLogado); 
         
@@ -49,7 +49,7 @@ public class ClienteService {
 	
 	//   /client_reports
 	public List<Cliente> ClientesPorConsultor(Consultor consultorLogado){
-		return clienteRepository.findByConsultorAndStatus(consultorLogado, "ATIVO");
+		return clienteRepository.findByConsultor(consultorLogado); // Removido o status
 	}
 	
 // --------------------------------------------------------------------------
@@ -91,6 +91,11 @@ public class ClienteService {
         }
         if (dto.getNotas() != null) {
             cliente.setNotas(dto.getNotas());
+        }
+
+        // Garante o status enviado pelo frontend seja salvo
+        if (dto.getStatus() != null) {
+            cliente.setStatus(dto.getStatus());
         }
         
         return clienteRepository.save(cliente);
