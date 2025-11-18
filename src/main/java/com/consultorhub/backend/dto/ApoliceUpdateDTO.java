@@ -6,6 +6,7 @@ public class ApoliceUpdateDTO {
     private Double valorPremio;
     private LocalDate dataInicioVigencia;
     private LocalDate dataTerminoVigencia;
+    private String numeroApolice;
     private String status;
 	public Double getValorPremio() {
 		return valorPremio;
@@ -30,6 +31,12 @@ public class ApoliceUpdateDTO {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getNumeroApolice() {
+		return numeroApolice;
+	}
+	public void setNumeroApolice(String numeroApolice) {
+		this.numeroApolice = numeroApolice;
 	}
     
 }

@@ -30,6 +30,7 @@ public class LlmService {
 	              "dataInicioVigencia": "YYYY-MM-DD",
 	              "dataTerminoVigencia": "YYYY-MM-DD",
 	              "tipo": "Saúde, Vida, ou outro"
+	              "numeroApolice": "numeroApolice"
 	            }
 	            
 	            TEXTO DA APÓLICE:

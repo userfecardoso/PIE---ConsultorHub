@@ -45,6 +45,7 @@ public class Apolice{
 	private String status;
 	private String tipo;
 	private String nomeArquivo;
+	private String numeroApolice;
 	
 	public Apolice() {
 	
@@ -52,7 +53,7 @@ public class Apolice{
 
 	public Apolice(UUID id, Cliente cliente, Consultor consultor, Seguradora seguradora, LocalDateTime createdOn,
 			String notas, Double valorPremio, LocalDate dataInicioVigencia, LocalDate dataTerminoVigencia,
-			String status, String tipo) {
+			String status, String tipo, String numeroApolice) {
 		super();
 		this.id = id;
 		this.cliente = cliente;
@@ -65,6 +66,7 @@ public class Apolice{
 		this.dataTerminoVigencia = dataTerminoVigencia;
 		this.status = status;
 		this.tipo = tipo;
+		this.numeroApolice = numeroApolice;
 	}
 
 	public UUID getId() {
@@ -158,5 +160,18 @@ public class Apolice{
 	public void setNomeArquivo(String nomeArquivo) {
 		this.nomeArquivo = nomeArquivo;
 	}
+
+	public String getNumeroApolice() {
+		return numeroApolice;
+	}
+
+	public void setNumeroApolice(String numeroApolice) {
+		this.numeroApolice = numeroApolice;
+	}
+
+	public void setCreatedOn(LocalDateTime createdOn) {
+		this.createdOn = createdOn;
+	}
 	
 }
+

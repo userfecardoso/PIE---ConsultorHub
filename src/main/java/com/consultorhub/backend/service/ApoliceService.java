@@ -54,7 +54,7 @@ public class ApoliceService {
 
 	}
 	
-	public Apolice uploadDocument(MultipartFile file, Consultor consultorLogado, String idClienteString, String idSeguradoraString, String notas) throws Exception{
+	public Apolice uploadDocument(MultipartFile file, Consultor consultorLogado, String idClienteString, String idSeguradoraString, String notas, String numeroApolice) throws Exception{
 		
 		String fileName = fileStorageService.storeFile(file);
 		

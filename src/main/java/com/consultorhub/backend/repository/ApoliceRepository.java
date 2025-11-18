@@ -26,6 +26,8 @@ public interface ApoliceRepository extends JpaRepository<Apolice, UUID> {
 	// 	/doc_reports
 	List<Apolice> findByConsultor(Consultor consultor);
 	
+	List<Apolice> findByNumeroApolice(String numeroApolice);
+	
 	//  /client_docs
 	List<Apolice> findByCliente(Cliente cliente);
 	
